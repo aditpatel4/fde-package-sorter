@@ -21,7 +21,8 @@ class TestThoughtfulSort(unittest.TestCase):
     def test_edge_equalities(self):
         # Exactly at thresholds should trigger
         self.assertEqual(sort(100, 100, 100, 20), "REJECTED")  # bulky by volume and heavy
-        self.assertEqual(sort(149.9, 149.9, 149.9, 19.999), "STANDARD")
+        # Strictly below all thresholds: dims <150, volume <1_000_000, mass <20
+        self.assertEqual(sort(149.9, 149.9, 20, 19.999), "STANDARD")
 
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError):
